@@ -2,14 +2,14 @@
 ---
 
 ## Entidades
-# **Las Entidades son:**
+### **Las Entidades son:**
 - Administrativo
 - Profesor
 - Alumno
 
 ## DATOS REQUERIDOS PARA ALUMNO
 
-# **Alumnos**
+### **Alumnos**
 1. DNI 
 2. Password
 3. Domicilio
@@ -24,7 +24,7 @@
 
 ## DATOS REQUERIDOS PARA ADMINISTRATIVO
 
-# **Administrativo**
+#### **Administrativo**
 1. DNI 
 2. Password
 3. Domicilio
@@ -35,7 +35,7 @@
 
 ## DATOS REQUERIDOS PARA PROFESOR
 
-# **Profesor**
+### **Profesor**
 1. DNI 
 2. Password
 3. Domicilio
