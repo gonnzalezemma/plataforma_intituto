@@ -1,8 +1,15 @@
 # PROYECTO ADMINISTRADOR INSTITUTO 
 ---
+
+## Entidades
+# **Las Entidades son:**
+- Administrativo
+- Profesor
+- Alumno
+
 ## DATOS REQUERIDOS PARA ALUMNO
 
-# **Usuario**
+# **Alumnos**
 1.DNI 
 2.Password
 3.Domicilio
@@ -10,9 +17,11 @@
 5.Anio
 6.Carrera
 7.Analitica
-
+8.notas de las materias
+9.asistencias
 ---
 ## DATOS REQUERIDOS PARA administrativo
+# **Administrarivo**
 1.DNI 
 2.Password
 3.Domicilio
@@ -23,9 +32,11 @@
 
 ---
 ## DATOS REQUERIDOS PARA PROFESOR
-
+# **Profesor**
 1.DNI 
 2.Password
 3.Domicilio
 4.Numero de telefono
-5.Carrera 
+5.Carreras
+6.materias
+
