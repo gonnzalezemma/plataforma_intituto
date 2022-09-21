@@ -16,7 +16,7 @@
 4. Numero de telefono
 5. Año
 6. Carrera
-7. Analitica
+7. documentaciones entregadas:value
 8. notas de las materias
 9. asistencias
 
@@ -43,3 +43,104 @@
 5. Carreras
 6. Materias
 
+# **Modelo Mongoose**
+
+- model asistencia
+```js
+
+{
+  
+    alumnos:[
+        {
+            alumno:{
+                type: Schema.Types.ObjectId,
+                ref: 'Usuario'
+            },
+            asistencia:{
+                type:Boolean,
+                default:true,
+                required:true,  
+        }
+    },
+],
+    fecha:{
+        type:Date,
+       required:true
+    }
+}
+
+
+```
+
+- Model Materias
+```js
+{
+
+    nombreMateria:{
+        type: String,
+        required:true
+    },
+    profesores:[
+        
+        {
+        type:Schema.Types.ObjectId,
+        required:true}
+    ],
+    horarioDesde:{
+        type: String,
+        required:true
+    },
+    horarioHasta:{
+        type: String,
+        required:true
+    },
+    notas:{
+      
+        primerParcial:{
+            type: Number,
+            
+        },
+        segundoParcial:{
+            type: Number,
+            
+        },
+        tercerParcial:{
+            type: Number,
+        }
+    },
+
+}
+
+```
+
+- Model perfilUser
+```js
+   userId: { 
+   type: Schema.Types.ObjectId,
+    ref: 'Materias'      },
+    nombre:{
+        type: String,
+        required:true
+        },
+    apellido:{
+        type: String,
+        required:true
+        },
+    celular:{
+        type: String,
+        required:true
+       },
+    direccion:{
+    type: String,
+    required:true
+                
+        },
+    dni:{
+        type: String,
+        required:true
+    },
+    materias:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Materias'            
+    }]
+```

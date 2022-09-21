@@ -1,0 +1,37 @@
+{
+  "name": "plataforma_intituto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gonnzalezemma/plataforma_intituto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gonnzalezemma/plataforma_intituto/issues"
+  },
+  "homepage": "https://github.com/gonnzalezemma/plataforma_intituto#readme",
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "body-parser": "1.20.0",
+    "cors": "2.8.5",
+    "dotenv": "16.0.2",
+    "express": "4.18.1",
+    "express-validator": "6.14.2",
+    "jsonwebtoken": "8.5.1",
+    "mongoose": "6.6.1",
+    "morgan": "1.10.0",
+    "multer": "1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

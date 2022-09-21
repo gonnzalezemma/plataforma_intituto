@@ -1,0 +1,6 @@
+.env
+node_modules    
+package-lock.json
+plataforma_instituto/.env 
+plataforma_instituto/node_modules
+plataforma_instituto/package-lock.json
