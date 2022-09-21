@@ -144,3 +144,30 @@
         ref: 'Materias'            
     }]
 ```
+
+- Model perfilUser
+```js
+   
+    dni:{
+        type: String,
+        required:true
+    },
+    password:{
+        type: String,
+        required:true
+    },
+    activo:{
+        type: Boolean,
+        default: true
+    },
+    perfilUser:{
+        
+        type: Schema.Types.ObjectId,
+        ref: 'Perfil'
+    
+    },
+    role:{
+        type: String,
+        required:true
+    },
+```

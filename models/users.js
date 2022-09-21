@@ -16,7 +16,7 @@ const UserShema = new Schema({
     perfilUser:{
         
         type: Schema.Types.ObjectId,
-        ref: 'Publicaciones'
+        ref: 'Perfil'
     
     },
     role:{
