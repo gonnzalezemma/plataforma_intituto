@@ -28,6 +28,10 @@ const PerfilShema = new Schema({
          materias:[{
              type: Schema.Types.ObjectId,
              ref: 'Materias'            
-         }]
+         }],
+         active:{
+            type:Boolean,
+            required:true
+        }
 });
 module.exports = model('Perfil', PerfilShema);

@@ -49,7 +49,7 @@
 ```js
 
 {
-  
+    
     alumnos:[
         {
             alumno:{
@@ -64,10 +64,13 @@
     },
 ],
     fecha:{
-        type:Date,
+       type:Date,
        required:true
+    },
+    active:{
+        type:Boolean,
+        required:true
     }
-}
 
 
 ```
@@ -75,7 +78,6 @@
 - Model Materias
 ```js
 {
-
     nombreMateria:{
         type: String,
         required:true
@@ -84,7 +86,8 @@
         
         {
         type:Schema.Types.ObjectId,
-        required:true}
+        ref: 'Usuario'
+        }
     ],
     horarioDesde:{
         type: String,
@@ -94,20 +97,29 @@
         type: String,
         required:true
     },
-    notas:{
-      
-        primerParcial:{
-            type: Number,
-            
-        },
-        segundoParcial:{
-            type: Number,
-            
-        },
-        tercerParcial:{
-            type: Number,
+    notas:
+      [
+          
+          {
+            alumno:{
+                type:Schema.Types.ObjectId,
+                ref: 'Usuario'
+            },
+          primerParcial:{
+              type: Number,
+              
+          },
+          segundoParcial:{
+              type: Number,
+              
+          },
+          tercerParcial:{
+              type: Number,
+          }
         }
-    },
+    
+    ],
+    
 
 }
 
@@ -115,39 +127,45 @@
 
 - Model perfilUser
 ```js
-   userId: { 
-   type: Schema.Types.ObjectId,
-    ref: 'Materias'      },
-    nombre:{
-        type: String,
-        required:true
-        },
-    apellido:{
-        type: String,
-        required:true
-        },
-    celular:{
-        type: String,
-        required:true
-       },
-    direccion:{
-    type: String,
-    required:true
-                
-        },
-    dni:{
-        type: String,
-        required:true
-    },
-    materias:[{
+
+ userId: { 
         type: Schema.Types.ObjectId,
-        ref: 'Materias'            
-    }]
+         ref: 'Materias'      },
+         nombre:{
+             type: String,
+             required:true
+             },
+         apellido:{
+             type: String,
+             required:true
+             },
+         celular:{
+             type: String,
+             required:true
+            },
+         direccion:{
+         type: String,
+         required:true
+                     
+             },
+         dni:{
+             type: String,
+             required:true
+         },
+         materias:[{
+             type: Schema.Types.ObjectId,
+             ref: 'Materias'            
+         }],
+         active:{
+            type:Boolean,
+            required:true
+        }
 ```
 
 - Model perfilUser
 ```js
    
+    
     dni:{
         type: String,
         required:true
@@ -156,18 +174,19 @@
         type: String,
         required:true
     },
-    activo:{
-        type: Boolean,
-        default: true
-    },
     perfilUser:{
         
         type: Schema.Types.ObjectId,
         ref: 'Perfil'
-    
+        
     },
     role:{
         type: String,
         required:true
     },
+    active:{
+        type:Boolean,
+        required:true
+    },
+    
 ```

@@ -9,18 +9,18 @@ const UserShema = new Schema({
         type: String,
         required:true
     },
-    activo:{
-        type: Boolean,
-        default: true
-    },
     perfilUser:{
         
         type: Schema.Types.ObjectId,
         ref: 'Perfil'
-    
+        
     },
     role:{
         type: String,
+        required:true
+    },
+    active:{
+        type:Boolean,
         required:true
     },
     

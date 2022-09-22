@@ -9,7 +9,8 @@ const MarteriaShema = new Schema({
         
         {
         type:Schema.Types.ObjectId,
-        required:true}
+        ref: 'Usuario'
+        }
     ],
     horarioDesde:{
         type: String,
@@ -19,20 +20,29 @@ const MarteriaShema = new Schema({
         type: String,
         required:true
     },
-    notas:{
-      
-        primerParcial:{
-            type: Number,
-            
-        },
-        segundoParcial:{
-            type: Number,
-            
-        },
-        tercerParcial:{
-            type: Number,
+    notas:
+      [
+          
+          {
+            alumno:{
+                type:Schema.Types.ObjectId,
+                ref: 'Usuario'
+            },
+          primerParcial:{
+              type: Number,
+              
+          },
+          segundoParcial:{
+              type: Number,
+              
+          },
+          tercerParcial:{
+              type: Number,
+          }
         }
-    },
+    
+    ]
+    ,
 
 });
 

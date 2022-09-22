@@ -9,7 +9,7 @@ ctrlAsistencia.tomarAsistencia = async(req, res)=>{
 
     const busqueda={
         asistencia,
-        dnidniAlumno
+        dniAlumno
     }=  req.body;
    console.log(busqueda)
     
@@ -27,7 +27,7 @@ ctrlAsistencia.tomarAsistencia = async(req, res)=>{
     }
     var currentDateObj = new Date();
     var numberOfMlSeconds = currentDateObj.getTime();
-    var addMlSeconds = -180 * 60000;
+    var addMlSeconds = -(3*60) * 60000;
     var newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
 
     const cargarAsistencia= new Asistencia({alumnos:datosAlumnos, fecha:newDateObj})
@@ -40,8 +40,7 @@ ctrlAsistencia.tomarAsistencia = async(req, res)=>{
 
     res.json({msj: 'asistencia de alumnos es:',
             obj:cargarAsistencia,
-            hora:cargarAsistencia.fecha,   
-            zonahoraria:newDateObj
+            fecha:cargarAsistencia.fecha
         })
 
 

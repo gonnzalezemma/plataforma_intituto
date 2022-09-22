@@ -15,8 +15,12 @@ const AsistenciaShema = new Schema({
     },
 ],
     fecha:{
-        type:Date,
+       type:Date,
        required:true
+    },
+    active:{
+        type:Boolean,
+        required:true
     }
 });
 
