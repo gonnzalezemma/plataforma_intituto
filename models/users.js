@@ -9,12 +9,6 @@ const UserShema = new Schema({
         type: String,
         required:true
     },
-    perfilUser:{
-        
-        type: Schema.Types.ObjectId,
-        ref: 'Perfil'
-        
-    },
     role:{
         type: String,
         required:true

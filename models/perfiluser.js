@@ -3,7 +3,7 @@ const {model, Schema}= require('mongoose');
 const PerfilShema = new Schema({
     userId: { 
         type: Schema.Types.ObjectId,
-         ref: 'Materias'      },
+         ref: 'Usuario'      },
          nombre:{
              type: String,
              required:true

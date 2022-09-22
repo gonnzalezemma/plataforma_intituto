@@ -22,7 +22,8 @@ router.post('/usuarios/create-user',rutaPost)
 
 //route edit user
 router.put('/usuarios/edit-user/:id',validar_jwt,rutaPut)
-
+/* {dni:
+password:} */
 //route logical delete user
 router.delete('/usuarios/delete-user/:id',rutaDelete)
 

@@ -14,6 +14,8 @@ ctrlAsistencia.tomarAsistencia = async(req, res)=>{
    console.log(busqueda)
     
     var datosAlumnos= [];
+    
+    //forOf  forin for each
     for (let index = 0; index < busqueda.length; index++) {
         const dniAlumnos = busqueda[index].dniAlumno;
         const asistencias = busqueda[index].asistencia;

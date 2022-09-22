@@ -10,9 +10,11 @@ const {
 
 
 
-//router.post('/asistencia',rutaMostrarInformacion)
+/* 
+La asistencia tiene que ser tomada unicamente por el administrativo. 
 
-//route add user information with token 
+
+*/
 router.post('/asistencia',tomarAsistencia)
 
 

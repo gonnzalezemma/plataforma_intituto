@@ -127,10 +127,9 @@
 
 - Model perfilUser
 ```js
-
- userId: { 
+  userId: { 
         type: Schema.Types.ObjectId,
-         ref: 'Materias'      },
+         ref: 'Usuario'      },
          nombre:{
              type: String,
              required:true
@@ -162,10 +161,10 @@
         }
 ```
 
-- Model perfilUser
+- Model User
 ```js
    
-    
+  
     dni:{
         type: String,
         required:true
@@ -173,12 +172,6 @@
     password:{
         type: String,
         required:true
-    },
-    perfilUser:{
-        
-        type: Schema.Types.ObjectId,
-        ref: 'Perfil'
-        
     },
     role:{
         type: String,
