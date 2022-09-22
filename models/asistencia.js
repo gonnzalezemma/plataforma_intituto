@@ -18,10 +18,7 @@ const AsistenciaShema = new Schema({
        type:Date,
        required:true
     },
-    active:{
-        type:Boolean,
-        required:true
-    }
+    
 });
 
 module.exports = model('Asistencia', AsistenciaShema);
