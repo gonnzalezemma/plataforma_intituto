@@ -128,34 +128,67 @@
 
 ## Model perfilUser
 ```js
-     userId: { 
-        type: Schema.Types.ObjectId,
-         ref: 'Usuario'      },
-         nombre:{
-             type: String,
-             required:true
-             },
-         apellido:{
-             type: String,
-             required:true
-             },
-         celular:{
-             type: String,
-             required:true
-            },
-         direccion:{
-         type: String,
-         required:true
-                     
-             },
-         dni:{
-             type: String,
-             required:true
-         },
-         materias:[{
-             type: Schema.Types.ObjectId,
-             ref: 'Materia'            
-         }],
+      userId: {
+    type: Schema.Types.ObjectId,
+    ref: "Usuario",
+  },
+  nombre: {
+    type: String,
+    required: true,
+  },
+  apellido: {
+    type: String,
+    required: true,
+  },
+  celular: {
+    type: String,
+    required: true,
+  },
+  direccion: {
+    type: String,
+    required: true,
+  },
+  dni: {
+    type: String,
+    required: true,
+  },
+  carreras: [
+    {
+      carrera: {
+        type: String,
+        required: true,
+      },
+      materias: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Materia",
+        },
+      ],
+    },
+  ],
+         
+```
+
+## Model User
+```js
+     
+    dni:{
+        type: String,
+        required:true
+    },
+    password:{
+        type: String,
+        required:true
+    },
+    role:{
+        type: String,
+        required:true
+    },
+    active:{
+        type:Boolean,
+        required:true
+    },
+    
          
 ```
 
