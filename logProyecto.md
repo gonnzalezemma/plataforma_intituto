@@ -1,5 +1,4 @@
 # PROYECTO ADMINISTRADOR INSTITUTO 
----
 
 ## Entidades
 ### **Las Entidades son:**
@@ -8,7 +7,7 @@
 - Alumno
 
 ## DATOS REQUERIDOS PARA ALUMNO
-
+---
 ### **Alumnos**
 1. DNI 
 2. Password
@@ -44,8 +43,7 @@
 6. Materias
 
 # **Modelo Mongoose**
-
-- model asistencia
+## Model asistencia
 ```js
 
 {
@@ -75,9 +73,10 @@
 
 ```
 
-- Model Materias
+## Model Materias
+
 ```js
-{
+
     nombreMateria:{
         type: String,
         required:true
@@ -119,15 +118,17 @@
         }
     
     ],
-    
+    publicaciones:{
+        type:Schema.Types.ObjectId,
+        ref: 'Publicacion'
+    }
 
-}
 
 ```
 
-- Model perfilUser
+## Model perfilUser
 ```js
-  userId: { 
+     userId: { 
         type: Schema.Types.ObjectId,
          ref: 'Usuario'      },
          nombre:{
@@ -153,33 +154,43 @@
          },
          materias:[{
              type: Schema.Types.ObjectId,
-             ref: 'Materias'            
+             ref: 'Materia'            
          }],
-         active:{
-            type:Boolean,
-            required:true
-        }
+         
 ```
 
-- Model User
+## Model Publicaciones
 ```js
    
-  
-    dni:{
-        type: String,
-        required:true
+
+    author:{
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario'   
     },
-    password:{
+    content:{
         type: String,
-        required:true
+       
     },
-    role:{
+    comentarios:[{
+        userId:{
+            type: Schema.Types.ObjectId,
+            ref: 'Usuario'    
+        },
+        content:{   
         type: String,
-        required:true
-    },
+        required: true
+        },
+        timeStamp:{
+            createdAt: Date,
+            default: Date.now()
+        }
+    }],
+    timeStamp:{
+        createdAt: Date,
+        default: Date.now()
+    },    
     active:{
-        type:Boolean,
-        required:true
-    },
-    
+        type: Boolean,
+        default: true
+    }    
 ```

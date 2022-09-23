@@ -41,8 +41,11 @@ const MarteriaShema = new Schema({
           }
         }
     
-    ]
-    ,
+    ],
+    publicaciones:{
+        type:Schema.Types.ObjectId,
+        ref: 'Publicacion'
+    }
 
 });
 

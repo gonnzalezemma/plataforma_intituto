@@ -27,7 +27,7 @@ const PerfilShema = new Schema({
          },
          materias:[{
              type: Schema.Types.ObjectId,
-             ref: 'Materias'            
+             ref: 'Materia'            
          }],
          
 });
