@@ -15,15 +15,14 @@ const {
 router.post('/login/usuarios', rutaLogin)
 
 //route agregar usuarios
-router.get('/usuarios/get-user',rutaGet)
+router.get('/usuarios/get-user',ExisteEmail,rutaGet)
 
 //route add user
 router.post('/usuarios/create-user',rutaPost)
 
 //route edit user
 router.put('/usuarios/edit-user/:id',validar_jwt,rutaPut)
-/* {dni:
-password:} */
+
 //route logical delete user
 router.delete('/usuarios/delete-user/:id',rutaDelete)
 
