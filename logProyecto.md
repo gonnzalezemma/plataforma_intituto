@@ -222,8 +222,4 @@
         createdAt: Date,
         default: Date.now()
     },    
-    active:{
-        type: Boolean,
-        default: true
-    }    
 ```
