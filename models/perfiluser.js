@@ -21,15 +21,10 @@ const PerfilShema = new Schema({
     type: String,
     required: true,
   },
-  dni: {
-    type: String,
-    required: true,
-  },
   carreras: [
     {
       carrera: {
         type: String,
-        required: true,
       },
       materias: [
         {

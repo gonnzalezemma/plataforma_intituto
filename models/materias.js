@@ -41,12 +41,7 @@ const MarteriaShema = new Schema({
           }
         }
     
-    ],
-    publicaciones:{
-        type:Schema.Types.ObjectId,
-        ref: 'Publicacion'
-    }
-
+    ]
 });
 
 module.exports = model('Materia', MarteriaShema);
