@@ -2,7 +2,7 @@
 # PROYECTO ADMINISTRADOR INSTITUTO 
 ### **Proyecto**
     
-1. Modelado de datos 19/20/22 [✓]
+1. Modelado de datos 19/9/22 [✓]
 2. Instalar librerias(helmet,bcryptjs,body-parser,cors,dotenv,express,express-validator,jsonwebtoken, mongoose,morgan,multer) 20/9/22 [✓]
 3. Iniciar Servidor mediante express 20/9/22 [✓]
 4. Estructurar carpetas 22/9/22 [✓]
