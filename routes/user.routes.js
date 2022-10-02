@@ -8,24 +8,28 @@ const {ExisteEmail} = require('../middlewares/validar_email')
 //mirar que cambio ja
 //controllers 
 const {
-    rutaPost,rutaLogin,rutaDelete,rutaGet,rutaPut
+    createUser,rutaLogin,rutaDelete,rutaGet,rutaPutUsers,rutaEditUser
 }= require('../controllers/user.controllers')
 
-//route login
+//route login puede ser el mismo para todos los usuarios
 router.post('/login/usuarios', rutaLogin)
 
-//route agregar usuarios
-router.get('/usuarios/get-user',ExisteEmail,rutaGet)
 
 //route add user
-router.post('/usuarios/create-user',rutaPost)
+router.post('/usuarios/create-user',validar_jwt,createUser)
 
-//route edit user
-router.put('/usuarios/edit-user/:id',validar_jwt,rutaPut)
+//route edit user for admin
+router.put('/usuarios/edit-user/',validar_jwt,rutaPutUsers)
+
+//route edit dni password user
+router.put('/usuarios/edit-user/:id',validar_jwt,rutaEditUser)
 
 //route logical delete user
-router.delete('/usuarios/delete-user/:id',rutaDelete)
+router.delete('/usuarios/delete-user/:id',validar_jwt,rutaDelete)
 
+
+//ver usuarios
+router.get('/usuarios/get-user',validar_jwt,rutaGet)
 
 
 module.exports=router;

@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
+const helmet = require('helmet')
 
 //settings
 
@@ -28,7 +28,7 @@ app.set('port', process.env.PORT || 5000) //port conection
 //routes server
 
 app.use(require('./routes/user.routes'));
-app.use(require('./routes/asistencia.routes'));
+//app.use(require('./routes/asistencia.routes'));
 
 
 

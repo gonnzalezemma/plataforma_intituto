@@ -4,7 +4,6 @@ const Usuario =require('../models/users');
 const bcryptjs = require('bcryptjs');
 const {generate_jwt}= require('../helpers/generate_jwt')
 
-
 //seccion alumnos profesores
 
 //ruta cambiar contraseña usuario: profesor y alumno
@@ -19,6 +18,27 @@ ctrlUsuarios.rutaPutPassword = async (req , res)=>{
     
 };
 
+//edit user by user
+ctrlUsuarios.rutaEditUser = async (req , res)=>{
+    const {password} = req.body;
+    const user= req.usuario;
+
+    if(user.password === password){
+        return res.status(401).json({                 
+            message: 'La contraseña no puede ser igual a la actual'
+      })
+    }
+    if(user.dni === password){
+        return res.status(401).json({                 
+            message: 'La contraseña no puede ser igual al dni'
+      })
+    }
+    
+    const usuario = await Usuario.findByIdAndUpdate(id, {password});
+    return res.json(usuario)
+
+}
+
 
 //Iniciar session usuario normal 
 ctrlUsuarios.rutaLogin = async(req, res)=>{
@@ -26,42 +46,41 @@ ctrlUsuarios.rutaLogin = async(req, res)=>{
     const {dni, password}=  req.body;
 
     const user =await Usuario.findOne({dni}) 
+
     
-    if(!user){
+        if(!user){
+            return res.status(401).json({
+                mensaje:"No existe:",
+                dni: dni
+            })
+        }
+        console.log(user.active)
+       
+        if(!user.active){
+            return res.status(401).json({
+                mensaje:"No existe:",
+                dni: dni
+            })
+        }
+    
+        
+    
+    //verificar contrasenia
+        const passwordTrue = bcryptjs.compareSync(password,user.password)
+    
+        if(!passwordTrue){
+            return res.status(401).json({msg:'contrasena invalida'})
+        }
+    
+        //generar token
+        const token = await generate_jwt(user.id);
+        res.json({msg:'inicio de session exitoso',
+        token:token})
+ 
         return res.status(401).json({
-            mensaje:"No existe:",
-            dni: dni
+            mensaje:`error${error}`
         })
-    }
-    console.log(user.active)
-   
-    if(!user.active){
-        return res.status(401).json({
-            mensaje:"No existe:",
-            dni: dni
-        })
-    }
-    //verify if user are normal user
-    if(user.role!="Profesor" || user.role!="Alumno"){
-        return res.status(401).json({
-            mensaje:"No existe:"
-        })
-    }
-     
-
-//verificar contrasenia
-    const passwordTrue = bcryptjs.compareSync(password,user.password)
-
-    if(!passwordTrue){
-        return res.status(401).json({msg:'contrasena invalida'})
-    }
-
-    //generar token
-    const token = await generate_jwt(user.id);
-
-    res.json({msg:'inicio de session exitoso',
-              token:token})
-
+    
 };
 //Fin session alumnos profesores
 
@@ -93,7 +112,7 @@ ctrlUsuarios.rutaLoginAdmin = async(req, res)=>{
             dni:dni
         })
     }
-    if(user.role!="administrativo"){
+    if(user.role!="admin"){
         return res.status(401).json({
             message: 'No tiene permisos porque su usuario tiene rol de: '+user.role,
             dni:dni
@@ -118,25 +137,49 @@ ctrlUsuarios.rutaLoginAdmin = async(req, res)=>{
 
 //ruta administrador agrega usuarios:  contraseña por defecto es el dni
 
-ctrlUsuarios.rutaPost = async (req,res)=>{
+ctrlUsuarios.createUser = async (req,res)=>{
     //
     const {dni, tipoRole} = req.body;
+    const admin = req.usuario
+
+    const usuario = await Usuario.findOne({dni:dni})
+
+    if (usuario){
+         return res.status(401).json({                 
+             message: 'Usuario ya existe'
+       })
+     }
+    if (admin.role!="admin"){
+         return res.status(401).json({                 
+             message: 'no tiene permisos'
+       })
+     }
+
+
     //asigna los roles segun es necesario
-    const user =new Usuario({dni,password:dni,role:tipoRole});
+    const user =new Usuario({dni:dni,password:dni,role:tipoRole});
     //se recomienda cambiar la contraseña despues de ingresar
-    //password salt
+
+    
+    
     const salt = bcryptjs.genSaltSync();
-    user.password = bcryptjs.hashSync(password, salt)
+    
+    user.password = bcryptjs.hashSync(dni, salt)
     
     await user.save();
     
     res.json({msg: 'Usuario agregado'})
 };
 
-
 //ver usuarios admin
 ctrlUsuarios.rutaGet = async (req,res)=>{
-    
+    const usuario = req.usuario;
+
+    if(usuario!="admin"){
+        return res.status(401).json({                 
+            message: 'no tiene permisos'
+      })
+    }
     const user = await Usuario.find();
     
     res.json(user);
@@ -148,9 +191,15 @@ ctrlUsuarios.rutaGet = async (req,res)=>{
 //ruta cambiar modeificar usuarios: profesor y alumno(modo admin)
 ctrlUsuarios.rutaPutUsers = async (req , res)=>{
     
-    const {dni,password} = req.body;
-    
-    const usuario = await Usuario.findByIdAndUpdate(id, {dni,password});
+    const {dni,password, role} = req.body;
+    const admin = req.usuario;
+
+    if(admin !="admin"){
+        return res.status(401).json({                 
+            message: 'no tiene permisos'
+      })
+    }
+    const usuario = await Usuario.findByIdAndUpdate(id, {dni,password, role});
     return res.json(usuario)
     
     
@@ -173,4 +222,4 @@ ctrlUsuarios.rutaDelete = async (req,res)=>{
 }
 
 module.exports = ctrlUsuarios;
-//Fin session alumnos profesores
+

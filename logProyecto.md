@@ -2,14 +2,14 @@
 # PROYECTO ADMINISTRADOR INSTITUTO 
 ### **Proyecto**
     
-1. Modelado de datos[✓]
-2. Instalar librerias(helmet,bcryptjs,body-parser,cors,dotenv,express,express-validator,jsonwebtoken, mongoose,morgan,multer)[✓]
-3. Iniciar Servidor mediante express[✓]
-4. Estructurar carpetas [✓]
-5. Declarar las rutas[✓] 
-6. Crear archivo de controladores necesarios(asistencia, user, materias,perfil)[✓]  
-7. Crear archivos en routes(user, perfil, asistencias, materias)[✓]
-8. 
+1. Modelado de datos 19/20/22 [✓]
+2. Instalar librerias(helmet,bcryptjs,body-parser,cors,dotenv,express,express-validator,jsonwebtoken, mongoose,morgan,multer) 20/9/22 [✓]
+3. Iniciar Servidor mediante express 20/9/22 [✓]
+4. Estructurar carpetas 22/9/22 [✓]
+5. Declarar las rutas 22/9/22 [✓] 
+6. Crear archivo de controladores necesarios(asistencia, user, materias,perfil) 24/9/22 [✓]  
+7. Crear archivos en routes(user, perfil, asistencias, materias) 27/9/22 [✓]
+8. Controlladores (user) 2/10/22 [✓]
 9. 
 
 ## Entidades

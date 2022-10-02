@@ -8,12 +8,11 @@ const {generate_jwt}= require('../helpers/generate_jwt')
 
 //controlador para agregar datos
 ctrlPerfilUsuarios.agregarDatos = async(req, res)=>{
-    const {nombre, apellido, celular,direccion,dni,ocupacion,lugaresInteres,organizacion, funcionOrganizacion
-    }=  req.body;
+    const {}=  req.body;
 // FALTA RELACION populate
     const userId= req.usuario._id;
 
-    const infoUser= new Perfil({userId:userId,nombre, apellido, celular,direccion,dni,ocupacion,lugaresInteres,organizacion, funcionOrganizacion})
+    const infoUser= new Perfil({})
 
 
 await infoUser.save();
