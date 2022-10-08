@@ -9,8 +9,10 @@
 5. Declarar las rutas 22/9/22 [✓] 
 6. Crear archivo de controladores necesarios(asistencia, user, materias,perfil) 24/9/22 [✓]  
 7. Crear archivos en routes(user, perfil, asistencias, materias) 27/9/22 [✓]
-8. Controlladores (user) 2/10/22 [✓]
-9. 
+8. Controladores (user) 2/10/22 [✓]
+9. Controladores (materias) 2/10/22 [✓]
+10. Controladores (perfilUser) 2/10/22 [✓]
+11. 
 
 ## Entidades
 ### **Las Entidades son:**
