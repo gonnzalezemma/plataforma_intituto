@@ -143,7 +143,11 @@ ctrlUsuarios.createUser = async (req,res)=>{
     const admin = req.usuario
 
     const usuario = await Usuario.findOne({dni:dni})
-
+if(tipoRole!="admin" && tipoRole!="profesor" && tipoRole!="alumno" ){
+    return res.status(401).json({                 
+        message: 'No existe el tipo'
+  })
+}
     if (usuario){
          return res.status(401).json({                 
              message: 'Usuario ya existe'
@@ -192,9 +196,9 @@ ctrlUsuarios.rutaGet = async (req,res)=>{
 ctrlUsuarios.rutaPutUsers = async (req , res)=>{
     
     const {dni,password, role} = req.body;
-    const admin = req.usuario;
+    const user = req.usuario;
 
-    if(admin !="admin"){
+    if(user !="admin"){
         return res.status(401).json({                 
             message: 'no tiene permisos'
       })
