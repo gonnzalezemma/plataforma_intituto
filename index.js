@@ -28,6 +28,7 @@ app.set('port', process.env.PORT || 5000) //port conection
 //routes server
 
 app.use(require('./routes/user.routes'));
+app.use(require('./routes/materias.routes'));
 //app.use(require('./routes/asistencia.routes'));
 
 

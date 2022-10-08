@@ -21,7 +21,6 @@
   "homepage": "https://github.com/gonnzalezemma/plataforma_intituto#readme",
   "dependencies": {
     "bcryptjs": "2.4.3",
-    "body-parser": "1.20.0",
     "cors": "2.8.5",
     "dotenv": "16.0.2",
     "express": "4.18.1",
