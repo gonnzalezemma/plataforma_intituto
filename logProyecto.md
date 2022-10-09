@@ -12,7 +12,9 @@
 8. Controladores (user) 2/10/22 [✓]
 9. Controladores (materias) 2/10/22 [✓]
 10. Controladores (perfilUser) 2/10/22 [✓]
-11. 
+10. Materias (controllador & routes ) 7/10/22 [✓]
+11. User     (controllador & routes ) 7/10/22 [✓]
+12. 
 
 ## Entidades
 ### **Las Entidades son:**

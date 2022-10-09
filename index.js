@@ -1,7 +1,7 @@
 //requires
 const express = require('express');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
+
 const cors = require('cors');
 const helmet = require('helmet')
 
@@ -15,7 +15,7 @@ require('./config/connections')
 
 //middleware
 app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: false}))
+
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
