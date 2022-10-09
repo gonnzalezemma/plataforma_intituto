@@ -6,10 +6,10 @@ const MarteriaShema = new Schema({
         required:true
     },
     profesores:[
-        
         {
+        profesor: {
         type:Schema.Types.ObjectId,
-        ref: 'Usuario'
+        ref: 'Usuario'}
         }
     ],
     horarioDesde:{
@@ -30,15 +30,17 @@ const MarteriaShema = new Schema({
             },
           primerParcial:{
               type: Number,
+              default:0
               
           },
           segundoParcial:{
               type: Number,
-              
+              default:0
           },
           tercerParcial:{
               type: Number,
-          }
+              default:0
+            }
         }
     
     ]
