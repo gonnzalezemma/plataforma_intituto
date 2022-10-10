@@ -21,18 +21,17 @@ const PerfilShema = new Schema({
     type: String,
     required: true,
   },
-  carreras: [
+
+  carrera: {
+    type: String,
+  },
+  materias: 
+  [
     {
-      carrera: {
-        type: String,
-      },
-      materias: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "Materia",
-        },
-      ],
-    },
+    materia:{
+      type: Schema.Types.ObjectId,
+      ref: "Materia",
+    },}
   ],
 });
 module.exports = model("Perfil", PerfilShema);
