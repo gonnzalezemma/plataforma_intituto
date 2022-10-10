@@ -11,8 +11,6 @@ ctrlAsistencia.tomarAsistencia = async(req, res)=>{
         asistencia,
         dniAlumno
     }=  req.body;
-   console.log(busqueda)
-    
     var datosAlumnos= [];
     
     //forOf  forin for each
