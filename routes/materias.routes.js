@@ -42,7 +42,7 @@ router.get('/materia/:id',validar_jwt, showMateria)
 router.get('/materias/notas',validar_jwt, showAlumNotas)
 
 
-//? Show notas de materias que da el profesor
+//? Show notas de materias que dadas el profesor
 router.get('/materias/profesor',validar_jwt, showNotasProf)
 
 
