@@ -74,12 +74,10 @@ ctrlUsuarios.rutaLogin = async(req, res)=>{
     
         //generar token
         const token = await generate_jwt(user.id);
-        res.json({msg:'inicio de session exitoso',
+        res.status(200).json({msg:'inicio de session exitoso',
         token:token})
  
-        return res.status(401).json({
-            mensaje:`error${error}`
-        })
+      
     
 };
 //Fin session alumnos profesores
