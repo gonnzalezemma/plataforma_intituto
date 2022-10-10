@@ -3,7 +3,7 @@
 ### **Proyecto**
     
 1. Modelado de datos 19/9/22 [✓]
-2. Instalar librerias(helmet,bcryptjs,body-parser,cors,dotenv,express,express-validator,jsonwebtoken, mongoose,morgan,multer) 20/9/22 [✓]
+2. Instalar librerias(helmet,bcryptjs,cors,dotenv,express,express-validator,jsonwebtoken, mongoose,morgan,multer) 20/9/22 [✓]
 3. Iniciar Servidor mediante express 20/9/22 [✓]
 4. Estructurar carpetas 22/9/22 [✓]
 5. Declarar las rutas 22/9/22 [✓] 
@@ -12,9 +12,14 @@
 8. Controladores (user) 2/10/22 [✓]
 9. Controladores (materias) 2/10/22 [✓]
 10. Controladores (perfilUser) 2/10/22 [✓]
-10. Materias (controllador & routes ) 7/10/22 [✓]
-11. User     (controllador & routes ) 7/10/22 [✓]
-12. 
+11. Materias (controllador & routes ) 7/10/22 [✓]
+12. User     (controllador & routes ) 7/10/22 [✓]
+13. Materias (status response ) 8/10/22 [✓]
+14. Materias (status response ) 8/10/22 [✓]
+15. Trabajar en los modulos de (perfil Usuario) 8/10/22 [✓]  
+17.Trabajar en los modulos de publicaciones  9/10/22 [✓]
+16. Trabajar en los modulos de (asistencia alumnos) 9/10/22 [] 
+ 
 
 ## Entidades
 ### **Las Entidades son:**
