@@ -1,36 +1,41 @@
-const {model, Schema}= require('mongoose');
+const { model, Schema } = require("mongoose");
 const PublicacionShema = new Schema({
 
-    author:{
+  idMateria: {
+    type: Schema.Types.ObjectId,
+    ref: "Usuario",
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "Usuario",
+  },
+  content: {
+    type: String,
+  },
+  comentarios: [
+    {
+      userId: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario'   
-    },
-    content:{
+        ref: "Usuario",
+      },
+      content: {
         type: String,
-       
+        required: true,
+      },
+    },{
+        timestamps: true,
+        versionKey: false
     },
-    comentarios:[{
-        userId:{
-            type: Schema.Types.ObjectId,
-            ref: 'Usuario'    
-        },
-        content:{   
-        type: String,
-        required: true
-        },
-        timeStamp:{
-            createdAt: Date,
-            default: Date.now()
-        }
-    }],
-    timeStamp:{
-        createdAt: Date,
-        default: Date.now()
-    },    
-    active:{
-        type: Boolean,
-        default: true
-    }
+  ],
+   
+  active: {
+    type: Boolean,
+    default: true,
+  },
+  
+},{
+    timestamps: true,
+    versionKey: false
 });
 
-module.exports = model('Publicacion', PublicacionShema);
+module.exports = model("Publicacion", PublicacionShema);
