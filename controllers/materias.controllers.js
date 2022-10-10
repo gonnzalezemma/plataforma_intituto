@@ -14,7 +14,7 @@ ctrlMaterias.createMateria = async (req, res) => {
 
   if (usuario.role != "admin") {
     //no da permisos
-    return res.json({ err: "no tiene permisos" });
+    return res.status(403).json({ err: "no tiene permisos" });
   }
 
   if (MATERIA) {
@@ -45,9 +45,13 @@ ctrlMaterias.createMateria = async (req, res) => {
 
   await materias.save();
 
-  res.json({ materias });
+  res.status(201).json({ materias });
 };
 
+/* 
+TODO PUT
+agregar notas materia por profesor
+ */
 ctrlMaterias.agregarNotas = async (req, res) => {
   const busqueda = ({
     dniAlumno,
@@ -56,10 +60,17 @@ ctrlMaterias.agregarNotas = async (req, res) => {
     tercerParcial,
   } = req.body);
 
+const user = req.usuario;
+
+if(user!="profesor"){
+
+  res.status(403).json({ msg:"No tiene permisos"});
+}
+
   var arrayNotas = [];
   const { id } = req.params; //id de materias
 
-  //!ver guardado
+  
   for (let i = 0; i < busqueda.length; i++) {
     const dniAlumno = busqueda[i].dniAlumno;
     const primerParcial = busqueda[i].primerParcial;
@@ -81,21 +92,30 @@ ctrlMaterias.agregarNotas = async (req, res) => {
 
   await Materias.findByIdAndUpdate(id, { notas: arrayNotas });
 
-  res.json({
+  res.status(201).json({
     arrayNotas,
   });
 };
-
+/* 
+TODO PUT
+?edit notas 
+ */
 ctrlMaterias.editarNotasUser = async (req, res) => {
   const { dniAlumno, primerParcial, segundoParcial, tercerParcial } = req.body;
 
   const idMateria = req.params.id;
+  const user = req.usuario; 
+
+  if(user!="profesor"){
+
+    res.status(403).json({message:"No tiene permisos"})
+  }
+
 
   const materiaPopulate = await Materias.findById(idMateria).populate({
     path: "notas.alumno",
     select: "dni",
   });
-  console.log(materiaPopulate);
   const materia = await Materias.findById(idMateria);
 
   const objetoAlumno = await Usuario.findOne({ dni: dniAlumno });
@@ -118,13 +138,17 @@ ctrlMaterias.editarNotasUser = async (req, res) => {
     notas: notasMateria,
   });
 
-  return res.json({
+  return res.status(200).json({
     materiaPopulate: materiaPopulate,
     notas: notas,
     materiaSave: materiasSave,
   });
 };
 
+/* 
+? GET 
+TODO MOSTAR MATERIAS
+*/ 
 ctrlMaterias.showMateria = async (req, res) => {
   const usuario = req.usuario;
   const Id = req.params.id;
@@ -135,11 +159,11 @@ ctrlMaterias.showMateria = async (req, res) => {
     usuario.role != "profesor" &&
     usuario.role != "alumno"
   ) {
-    return res.json({ success: "No tiene permisos" });
+    return res.status(200).json({ success: "No tiene permisos" });
   }
 
   if (usuario.role == "profesor") {
-    return res.json({ Materia });
+    return res.status(200).json({ Materia });
   }
 
   if (usuario.role == "alumno") {
@@ -149,13 +173,17 @@ ctrlMaterias.showMateria = async (req, res) => {
 
     ObjMateria.notas = materiAlum;
 
-    return res.json({ ObjMateria });
+    return res.status(200).json({ ObjMateria });
   }
 };
 
+/* 
+ ? GET 
+ TODO show todas las notas del alumno logueado 
+ */
 ctrlMaterias.showAlumNotas = async (req, res) => {
   /* 
-    todo  MOSTRA TODAS LAS NOTAS DE TODAS LAS MATERIAS DE LOS ALUMNOS
+    *  MOSTRA TODAS LAS NOTAS DE TODAS LAS MATERIAS DE LOS ALUMNOS
     */
 
   var notas = [];
@@ -163,8 +191,11 @@ ctrlMaterias.showAlumNotas = async (req, res) => {
   const materias = await Materias.find();
 
   if (usuario.role != "alumno") {
-    res.json({ Data: "no tiene permisos" });
+
+    res.status(403).json({ Data: "no tiene permisos" });
+ 
   }
+
   materias.forEach((element) => {
     const notaAlumno = element.notas.find((e) => e.alumno == usuario.id);
 
@@ -177,10 +208,15 @@ ctrlMaterias.showAlumNotas = async (req, res) => {
     notas = [...notas, { materias: notasMaterias }];
   });
 
-  res.json({ notas });
+  res.status(200).json({ notas });
 };
 
+/* 
+?GET
+*Show notas de materias que dadas el profesor
+*/
 ctrlMaterias.showNotasProf = async (req, res) => {
+  
   const user = req.usuario;
   const MATERIAS = await Materias.find().populate({
     path: "profesores.profesor",
@@ -188,7 +224,9 @@ ctrlMaterias.showNotasProf = async (req, res) => {
   });
 
   if (user.role != "profesor") {
-    res.json({ res: "no tiene permisos" });
+  
+    res.status(403).json({ res: "no tiene permisos" });
+  
   }
   var arrayMaterias = [];
 
@@ -206,15 +244,19 @@ ctrlMaterias.showNotasProf = async (req, res) => {
   });
 
   if (count < 1) {
-    return res.json({ res: "No tiene materias" });
+    return res.status(204).json({ res: "No tiene materias" });
   }
 
-  return res.json({
+  return res.status(200).json({
     profesor: user.dni,
     arrayMaterias,
   });
 };
+/* 
+todo PUT
+* edit materia for admin
 
+ */
 ctrlMaterias.editMateria = async (req, res) => {
   const { nombreMateria, dniProfesores, horarioDesde, horarioHasta } = req.body;
   const idMateria = req.params.id;
@@ -223,7 +265,7 @@ ctrlMaterias.editMateria = async (req, res) => {
   var arrayProfesores = [];
 
   if (user.role != "admin") {
-    return res.json({
+    return res.status(403).json({
       msg: "no tiene permisos",
     });
   }
@@ -233,6 +275,13 @@ ctrlMaterias.editMateria = async (req, res) => {
       const profesor = dniProfesores[i].dni;
 
       const objectProfesores = await Usuario.findOne({ dni: profesor });
+
+      if(!objectProfesores){
+        return res.status(404).json({
+          msg: "profesor not found",
+        });
+      }
+
 
       arrayProfesores = [
         ...arrayProfesores,
@@ -248,8 +297,8 @@ ctrlMaterias.editMateria = async (req, res) => {
       horarioDesde: horarioDesde,
       horarioHasta: horarioHasta,
     });
-    return res.json({
-      msg: "materia update god",
+    return res.status(201).json({
+      msg: "materia updated successfully",
       isUpdate,
     });
   }
@@ -261,8 +310,8 @@ ctrlMaterias.editMateria = async (req, res) => {
     horarioHasta: horarioHasta,
   });
 
-  return res.json({
-    msg: "materia update god",
+  return res.status(201).json({
+    msg: "materia updated successfully",
     materiasSave,
   });
 };
