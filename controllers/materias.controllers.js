@@ -50,7 +50,7 @@ ctrlMaterias.createMateria = async (req, res) => {
 
 /* 
 TODO PUT
-agregar notas materia por profesor
+* agregar notas materia por profesor
  */
 ctrlMaterias.agregarNotas = async (req, res) => {
   const busqueda = ({
@@ -278,7 +278,7 @@ ctrlMaterias.editMateria = async (req, res) => {
 
       if(!objectProfesores){
         return res.status(404).json({
-          msg: "profesor not found",
+          msg: `profesor not found dni ${profesor}`,
         });
       }
 
@@ -303,17 +303,6 @@ ctrlMaterias.editMateria = async (req, res) => {
     });
   }
 
-  const materiasSave = await Materias.findByIdAndUpdate(idMateria, {
-    nombreMateria: nombreMateria,
-    profesores: dniProfesores,
-    horarioDesde: horarioDesde,
-    horarioHasta: horarioHasta,
-  });
-
-  return res.status(201).json({
-    msg: "materia updated successfully",
-    materiasSave,
-  });
 };
 
 module.exports = ctrlMaterias;
