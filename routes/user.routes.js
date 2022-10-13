@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const {body, check}= require('express-validator')
-
+const {validar_campos} = require('../helpers/validar_campos');
 const {validar_jwt} =require('../middlewares/validar_jwt')
 const {validarUser} = require('../middlewares/validarUser')
 const {ExisteEmail} = require('../middlewares/validar_email')
@@ -12,11 +12,16 @@ const {
 }= require('../controllers/user.controllers')
 
 //route login puede ser el mismo para todos los usuarios
-router.post('/login/usuarios', rutaLogin)
+router.post('/login/usuarios',
+
+
+rutaLogin)
 
 
 //route add user
-router.post('/usuarios/create-user',validar_jwt,createUser)
+router.post('/usuarios/create-user',
+validar_jwt,
+createUser)
 
 //route edit user for admin
 router.put('/usuarios/edit-user/',validar_jwt,rutaPutUsers)
