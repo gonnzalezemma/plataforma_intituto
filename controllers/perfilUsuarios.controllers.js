@@ -22,7 +22,7 @@ const Materias =require('../models/materias');
 
 
 ctrlPerfilUsuarios.agregarDatos = async(req, res)=>{
-    const {nombre,apellido,celular,direccion, carrera, materias}=  req.body;
+    const {nombre,apellido,celular, email,direccion, carrera, materias}=  req.body;
 
     const usuario= req.usuario;
 
@@ -76,7 +76,7 @@ ctrlPerfilUsuarios.agregarDatos = async(req, res)=>{
     }
 
 
-    const infoUser= new Perfil({userId:usuario, nombre:nombre, apellido:apellido, celular:celular,direccion:direccion, carrera:carrera, materias:arrayMaterias})
+    const infoUser= new Perfil({userId:usuario, nombre:nombre, apellido:apellido,email:email, celular:celular,direccion:direccion, carrera:carrera, materias:arrayMaterias})
 
     
     await infoUser.save();
