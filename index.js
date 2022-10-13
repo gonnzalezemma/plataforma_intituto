@@ -34,7 +34,7 @@ app.use(require('./routes/publicaciones.routes'));
 
 
 
-//app.use(require('./routes/asistencia.routes'));
+app.use(require('./routes/asistencia.routes'));
 
 
 
