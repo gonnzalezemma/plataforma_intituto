@@ -6,7 +6,15 @@ const Usuario = require("../models/users");
 
 ctrlAsistencia.tomarAsistencia = async (req, res) => {
 
+const user = req.usuario;
 
+if(user.role !=="admin"){
+
+  res.status(401).json({
+    msg:"No tiene los permisos requeridos"
+  })
+  
+}
 
 
   const busqueda = { asistencia, dniAlumno } = req.body;
@@ -22,7 +30,7 @@ ctrlAsistencia.tomarAsistencia = async (req, res) => {
 });
 
 
-console.log(searchDate)
+
 
 if(searchDate.length = 0){
 

@@ -32,7 +32,7 @@ ctrlPerfilUsuarios.agregarDatos = async(req, res)=>{
 
         if(e.userId===usuario.id){
             
-            return res.json({ msg:"ya existe user"})
+            return res.status(401).json({ msg:"ya existe user"})
         }
     });  
     

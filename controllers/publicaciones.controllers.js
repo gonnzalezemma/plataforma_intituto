@@ -57,15 +57,19 @@ if(user.role!="alumno"){
 
     return res.status(200).json({
         user:"admin/profe",
-    posts
-})}else{
+        posts
+    })
+
+}else{
     const posts= await Publicacion.findOne({idMateria:idMateria, active:true})
 
     return res.status(200).json({
         user:"alumno",
         posts
     })
+
 }
+
 
 }
 /* 

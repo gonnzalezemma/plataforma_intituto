@@ -21,21 +21,9 @@ ctrlUsuarios.rutaPutPassword = async (req , res)=>{
 //edit user by user
 ctrlUsuarios.rutaEditUser = async (req , res)=>{
     const {password} = req.body;
-    const user= req.usuario;
-
-    if(user.password === password){
-        return res.status(401).json({                 
-            message: 'La contraseña no puede ser igual a la actual'
-      })
-    }
-    if(user.dni === password){
-        return res.status(401).json({                 
-            message: 'La contraseña no puede ser igual al dni'
-      })
-    }
     
     const usuario = await Usuario.findByIdAndUpdate(id, {password});
-    return res.json(usuario)
+    return res.status(201).json(usuario)
 
 }
 
@@ -170,7 +158,7 @@ if(tipoRole!="admin" && tipoRole!="profesor" && tipoRole!="alumno" ){
     
     await user.save();
     
-    res.json({msg: 'Usuario agregado'})
+   return res.json({msg: 'Usuario agregado'})
 };
 
 //ver usuarios admin
@@ -188,9 +176,10 @@ ctrlUsuarios.rutaGet = async (req,res)=>{
 }
 
 
-
-
-//ruta cambiar modeificar usuarios: profesor y alumno(modo admin)
+/* 
+todo PUT
+*ruta cambiar modeificar usuarios: profesor y alumno(modo admin)
+ */
 ctrlUsuarios.rutaPutUsers = async (req , res)=>{
     
     const {dni,password, role} = req.body;
@@ -212,14 +201,36 @@ ctrlUsuarios.rutaPutUsers = async (req , res)=>{
 ctrlUsuarios.rutaDelete = async (req,res)=>{
     
     const {id} = req.params;
+    const usuario = req.usuario;
     
-    const user =await Usuario.findByIdAndUpdate(id,{ active: false });
+    if(id !== usuario.id ){
+        return res.status(401).json({
+            msg: 'no tiene permisos'
+        })
+    }
     
+    if(!usuario.role === 'admin'){
+        
+        const user =await Usuario.findByIdAndUpdate(id,{ active: false });
+        
+        //? responde si fue eliminado correctamente
+        return res.status(201).json({
+            msg: "user removido logicamente", user
+        })
+    }
+
+    if((usuario.role !== 'admin') && (id == usuario.id)){
+        
+        const user =await Usuario.findByIdAndUpdate(id,{ active: false });
+        
+        //? responde si fue eliminado correctamente
+        return res.status(201).json({
+            msg: "user removido logicamente", user
+        })
+    }
     
-    //responde si fue eliminado correctamente
-    
-    return res.status(201).json({
-        msg: "user removido logicamente", user
+    return res.status(500).json({
+        msg:"Internal server Error!"
     })
 }
 
