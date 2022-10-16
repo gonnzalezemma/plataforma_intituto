@@ -1,10 +1,14 @@
 const router = require("express").Router();
 
-const { body, check } = require("express-validator");
 
 const { validar_jwt } = require("../middlewares/validar_jwt");
 
-//const {ExisteEmail} = require('../middlewares/validar_email')
+const { 
+  validarVerPublicaciones, 
+  validarAgregarPublicacion,
+  validarAgregarComentario
+
+ } = require("../middlewares/validaciones");
 
 //controllers
 const {
@@ -31,11 +35,33 @@ const {
   addComment,
 } = require("../controllers/publicaciones.controllers");
 
-router.get("/materia/:id/publicacion/", validar_jwt, verPublicaciones);
 
-router.post("/materia/:id/publicacion/", validar_jwt, agregarPublicacion);
 
-router.put("/publicacion/:publicacion/comment", validar_jwt,addComment);
+
+router.get("/materia/:id/publicacion/", 
+validar_jwt, 
+//? express-validator
+validarVerPublicaciones,
+verPublicaciones);
+
+router.post("/materia/:id/publicacion/",
+ validar_jwt, 
+ /* 
+ ? express-validator 
+ *validar verPublicaciones
+ */
+ validarAgregarPublicacion,
+ 
+ agregarPublicacion);
+
+router.put("/publicacion/:publicacion/comment",
+ validar_jwt,
+ /* 
+ ? express-validator
+ *validar comment publicacion 
+ */
+validarAgregarComentario,
+ addComment);
 
 router.put("/publicacion/:publicacion", validar_jwt, eliminarPublicacion);
 
