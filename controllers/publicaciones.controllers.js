@@ -52,7 +52,7 @@ if(!user){
 
 if(user.role!="alumno"){
 
-    const posts= await Publicacion.findOne({idMateria:idMateria})
+    const posts= await Publicacion.find({idMateria:idMateria})
 
 
     return res.status(200).json({
@@ -61,7 +61,7 @@ if(user.role!="alumno"){
     })
 
 }else{
-    const posts= await Publicacion.findOne({idMateria:idMateria, active:true})
+    const posts= await Publicacion.find({idMateria:idMateria, active:true})
 
     return res.status(200).json({
         user:"alumno",

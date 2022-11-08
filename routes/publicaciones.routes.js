@@ -39,9 +39,9 @@ const {
 
 
 router.get("/materia/:id/publicacion/", 
-validar_jwt, 
+
 //? express-validator
-validarVerPublicaciones,
+
 verPublicaciones);
 
 router.post("/materia/:id/publicacion/",

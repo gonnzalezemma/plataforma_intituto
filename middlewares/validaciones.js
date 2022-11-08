@@ -1,5 +1,5 @@
 const validacion = {};
-const { body, check } = require("express-validator");
+const { body, check,param } = require("express-validator");
 const validar_campos = require("../helpers/validar_campos");
 
 const {
@@ -87,28 +87,28 @@ validacion.validarAgregarInformacionyEdit = [
     .isString()
     .not()
     .isEmpty()
-    .length({ min: 3, max: 10 }),
+    .isLength({ min: 3, max: 10 }),
   body("apellido", "apellido ingresado no cumple los parametros")
     .isString()
     .not()
     .isEmpty()
-    .length({ min: 3, max: 10 }),
+    .isLength({ min: 3, max: 10 }),
   body("celular", "Celular ingresado no cumple los parametros")
     .isString()
     .not()
     .isEmpty()
-    .length({ min: 5, max: 15 }),
+    .isLength({ min: 5, max: 15 }),
   body("email", "Email ingresado incorrecto")
     .isEmail()
     .not()
     .isEmpty()
-    .length({ min: 7, max: 35 })
+    .isLength({ min: 7, max: 35 })
     .custom(ExisteEmail),
   body("direccion", "Direccion ingresada incorreta")
     .isString()
     .not()
     .isEmpty()
-    .length({ min: 7, max: 35 }),
+    .isLength({ min: 7, max: 35 }),
   body("materia", "Materia ingresada incorrecta")
   .isArray()
   .not()
@@ -118,7 +118,7 @@ validacion.validarAgregarInformacionyEdit = [
     .isEmail()
     .not()
     .isEmpty()
-    .length({ min: 4, max: 25 }),
+    .isLength({ min: 4, max: 25 }),
   validar_campos,
 ];
 
@@ -133,7 +133,7 @@ validacion.validarAgregarPublicacion = [
     .isString()
     .not()
     .isEmpty()
-    .length({ min: 5, max: 500 }),
+    .isLength({ min: 5, max: 500 }),
   validar_campos,
 ];
 validacion.validarAgregarComentario = [
@@ -142,7 +142,7 @@ validacion.validarAgregarComentario = [
   .isString()
   .not()
     .isEmpty()
-    .length({ min: 1, max: 200 }),
+    .isLength({ min: 1, max: 200 }),
     validar_campos
   ];
   
@@ -151,7 +151,7 @@ validacion.validarAgregarComentario = [
     .isString()
     .not()
     .isEmpty()
-    .length({ min:3,max:300}),
+    .isLength({ min:3,max:300}),
     body("dniProfesores", "El dato ingresado no tiene los parametro correcto")
     .isArray()
     .not()
@@ -160,12 +160,12 @@ validacion.validarAgregarComentario = [
     .isString()
     .not()
     .isEmpty()
-    .length({min:3, max:4}),
+    .isLength({min:3, max:4}),
     body("horarioHasta"," El horario no cumple con el formato establecido")
     .isString()
     .not()
     .isEmpty()
-    .length({min:3, max:4}),
+    .isLength({min:3, max:4}),
     validar_campos
     
   ]
@@ -178,7 +178,7 @@ validacion.validarAgregarComentario = [
     .isString()
     .not()
     .isEmpty()
-    .length({ min:3,max:300}),
+    .isLength({ min:3,max:300}),
     body("dniProfesores", "El dato ingresado no tiene los parametro correcto")
     .isArray()
     .not()
@@ -187,12 +187,12 @@ validacion.validarAgregarComentario = [
     .isString()
     .not()
     .isEmpty()
-    .length({min:3, max:4}),
+    .isLength({min:3, max:4}),
     body("horarioHasta"," El horario no cumple con el formato establecido")
     .isString()
     .not()
     .isEmpty()
-    .length({min:3, max:4}),
+    .isLength({min:3, max:4}),
     validar_campos
     
   ]
@@ -202,7 +202,7 @@ validacion.validarAgregarComentario = [
     .isString()
     .not()
     .isEmpty()
-    .length(),
+    .isLength(),
     body("primerParcial","No cumple con el formato establecido")
     .isInt(),
     body("segundoParcial","No cumple con el formato establecido")
@@ -217,7 +217,7 @@ validacion.validarAgregarComentario = [
     .isString()
     .not()
     .isEmpty()
-    .length(),
+    .isLength(),
     body("primerParcial","No cumple con el formato establecido")
     .isInt(),
     body("segundoParcial","No cumple con el formato establecido")
@@ -227,7 +227,7 @@ validacion.validarAgregarComentario = [
     validar_campos
     
   ]
-  validacion.validarEditNotaAlumno = [
+  validacion.validarShowMateria = [
     param("id", "No cumple con el formato establecido")
     .isMongoId(),
     validar_campos
