@@ -11,6 +11,9 @@ export default function Routing() {
     return (
         <Routes>
         <Route path='' element={<Inicio/>} />
+        <Route path='' element={<Login/>} />
+        <Route path='' element={<Registro/>} />
+        <Route path='' element={<Home/>} />
         
       </Routes>
 

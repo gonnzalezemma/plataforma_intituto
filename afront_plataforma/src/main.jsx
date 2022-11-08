@@ -6,8 +6,7 @@ import Footer from "../src/layouts/Footer";
 import { BrowserRouter } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <NavBar />
     <App />
-    <Footer />
+    
   </BrowserRouter>
 );
